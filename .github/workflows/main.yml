@@ -40,7 +40,7 @@ jobs:
       - name: Commit changes
         run: |
           git add dns.txt
-          git diff --cached --quiet || git commit -m "Update dns.txt [skip ci]"
+          git diff --cached --quiet || git commit -m "Update dns.txt"
 
       # Fazer push
       - name: Push changes
