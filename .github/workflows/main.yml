@@ -45,4 +45,4 @@ jobs:
       # Fazer push
       - name: Push changes
         run: |
-          git push https://x-access-token:${{ secrets.TOKEN }}@github.com/dns_ntc main
+          git push https://x-access-token:${{ secrets.TOKEN }}@github.com/${{ secrets.USER }}/dns_ntc main
