@@ -1,0 +1,50 @@
+name: Update dns.txt
+
+on:
+  workflow_dispatch: # permite rodar manualmente
+  schedule:
+    - cron: "0 * * * *" # roda de hora em hora (ajuste se quiser)
+
+jobs:
+  update-dns:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Clonar repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Configurar Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      # Instalar dependências
+      - name: Install dependencies
+        run: |
+          pip install requests
+
+      # Rodar script Python (ajuste o nome do script)
+      - name: Run Python script
+        run: |
+          python script.py
+
+      # Configurar Git para commit
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      # Fazer commit se houver alterações
+      - name: Commit changes
+        run: |
+          git add dns.txt
+          git diff --cached --quiet || git commit -m "Update dns.txt [skip ci]"
+
+      # Fazer push
+      - name: Push changes
+        run: |
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
