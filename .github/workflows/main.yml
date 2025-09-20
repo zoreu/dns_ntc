@@ -1,9 +1,22 @@
 name: Update dns.txt
 
 on:
-  workflow_dispatch: # permite rodar manualmente
+  # Roda a cada 3 horas
   schedule:
-    - cron: "0 * * * *" # roda de hora em hora (ajuste se quiser)
+    - cron: '0 */3 * * *'
+
+  # Roda manualmente
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+          - info
+          - warning
+          - debug
 
 jobs:
   update-dns:
