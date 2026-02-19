@@ -1,7 +1,7 @@
 import requests as req
 
 print("gravando dns...")
-dns_base = 'https://neetcine.lat/'
+dns_base = 'https://netcinebs.lat/'
 
 with req.Session() as session:
     session.headers.update({
